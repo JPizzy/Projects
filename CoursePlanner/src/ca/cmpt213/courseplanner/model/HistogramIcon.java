@@ -26,6 +26,7 @@ public class HistogramIcon implements Icon{
 	private final int TOP_MARGIN = MARGIN + TEXT_HEIGHT;
 	private final int BOTTOM_MARGIN = MARGIN + (2 * TEXT_HEIGHT);
 	private final int BAR_SPACING = 8;
+	private final String BAR_COLOR = "#3366CC";
 
 	public HistogramIcon(Histogram hist, int width, int height) {
 		this.model = hist;
@@ -75,7 +76,7 @@ public class HistogramIcon implements Icon{
 				int barHeight = (int) ((bottomMargin - TOP_MARGIN) * barHeightPercentage);
 				int startY = bottomMargin - barHeight;
 
-				g2d.setColor(Color.BLUE);
+				g2d.setColor(Color.decode(BAR_COLOR));
 				g2d.fillRect(startX, startY, barWidth, barHeight);
 
 				// Get text offsets for centering of text

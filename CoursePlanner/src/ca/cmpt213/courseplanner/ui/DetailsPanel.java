@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
@@ -98,10 +99,9 @@ public class DetailsPanel extends MyPanel {
 		sectionsPanel.removeAll();
 		
 		CourseList model = super.getModel();
-		System.out.println(model.getSelectedCourse().makeStringRepresentation());
 		CourseOffering offering = model.getSelectedOffering();
 		ArrayList<Section> sections = offering.getSections();
-		sectionsPanel.setLayout(new GridLayout(sections.size()+1, 2));
+		sectionsPanel.setLayout(new GridLayout(sections.size() + 1, 2));
 		sectionsPanel.add(new JLabel("Section Type"));
 		sectionsPanel.add(new JLabel("Enrollment(filled/cap)"));
 		for(Section section : sections) {
