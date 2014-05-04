@@ -1,12 +1,12 @@
 package com.projects.towersofhanoi.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -41,10 +41,10 @@ public class ControlPanel extends JPanel{
 		});
 		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
-		buttonPanel.add(addButton);
+		buttonPanel.setLayout(new BorderLayout());
+		buttonPanel.add(addButton, BorderLayout.NORTH);
 		buttonPanel.add(Box.createVerticalGlue());
-		buttonPanel.add(removeButton);
+		buttonPanel.add(removeButton, BorderLayout.SOUTH);
 		return buttonPanel;
 	}
 }

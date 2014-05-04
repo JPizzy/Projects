@@ -1,7 +1,5 @@
 package com.projects.towersofhanoi.ui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;

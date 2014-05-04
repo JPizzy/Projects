@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Iterator;
-import java.util.Random;
 
 import javax.swing.Icon;
 
@@ -41,7 +40,6 @@ public class TowersIcon implements Icon{
 
 	@Override
 	public void paintIcon(Component c, Graphics g, int x, int y) {
-		Random rand = new Random();
 		Graphics g2d = (Graphics2D) g;
 		
 		//Fill background
@@ -69,14 +67,11 @@ public class TowersIcon implements Icon{
 			Iterator<Disk> itrD = currentPeg.iterator();
 			int intialY = HEIGHT - MARGIN - diskHeight;
 			while(itrD.hasNext()) {
-				float red = (float) (rand.nextFloat() / 2 + 0.5);
-				float green = (float) (rand.nextFloat() / 2 + 0.5);
-				float blue = (float) (rand.nextFloat() / 2 + 0.5);
-				Color randomColor = new Color(red, green, blue);
-				g2d.setColor(randomColor);
-				
 				Disk currentDisk = itrD.next();
-				int diskWidth = (distanceBetweenPegs- PADDING) / (game.getNumOfDisks() - currentDisk.getSize() + 1);
+				g2d.setColor(currentDisk.getColor());
+//				int diskSegment = (distanceBetweenPegs - PADDING) / game.getNumOfDisks();
+//				int diskWidth = diskSegment * currentDisk.getSize();
+				int diskWidth = (distanceBetweenPegs - PADDING) / game.getNumOfDisks() * currentDisk.getSize();
 				g2d.fillRoundRect(MARGIN + initialX + (PEG_WIDTH / 2) - (diskWidth / 2), 
 						intialY, 
 						diskWidth, 
