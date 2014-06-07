@@ -9,14 +9,15 @@ import com.projects.towersofhanoi.model.GameBoard;
 public class ProgramRunner {
 
 	public ProgramRunner() {
-		GameBoard game = new GameBoard(4, 3);
+		GameBoard game = new GameBoard(3, 3);
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel content = new JPanel();
 		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
+		content.add(new MenuPanel(game));
 		content.add(new GamePanel(game));
 		content.add(new ControlPanel(game));
-		content.add(new StatusPanel());
+		content.add(new StatusPanel(game));
 		frame.add(content);
 		
 		frame.pack();

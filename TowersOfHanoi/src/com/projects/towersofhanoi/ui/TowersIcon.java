@@ -1,9 +1,12 @@
 package com.projects.towersofhanoi.ui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.RoundRectangle2D;
 import java.util.Iterator;
 
 import javax.swing.Icon;
@@ -18,6 +21,8 @@ public class TowersIcon implements Icon{
 	private final int MARGIN = 10;
 	private final int PADDING = 10;
 	private final int PEG_WIDTH = 6;
+	private final int STROKE_WIDTH = 2;
+	private final float PERCENT_OF_PEG_COVERED = 0.8f;
 	private final String PEG_COLOR = "#7A2900";
 	
 	GameBoard game;
@@ -40,7 +45,7 @@ public class TowersIcon implements Icon{
 
 	@Override
 	public void paintIcon(Component c, Graphics g, int x, int y) {
-		Graphics g2d = (Graphics2D) g;
+		Graphics2D g2d = (Graphics2D) g;
 		
 		//Fill background
 		g2d.setColor(Color.WHITE);
@@ -54,33 +59,46 @@ public class TowersIcon implements Icon{
 		//Draw Pegs
 		int distanceBetweenPegs = (WIDTH - (MARGIN * 2)) / game.getNumOfPegs();
 		Iterator<Peg> itr = game.iterator();
-		int initialX = (distanceBetweenPegs / 2) - (PEG_WIDTH / 2);
+		int currentX = (distanceBetweenPegs / 2) - (PEG_WIDTH / 2);
 		
-		int diskHeight = (int) (((HEIGHT - (MARGIN * 2))*0.8) / game.getNumOfDisks());
+		int diskHeight = (int) (((HEIGHT - (MARGIN * 2))*PERCENT_OF_PEG_COVERED) / game.getNumOfDisks());
 		
 		while(itr.hasNext()) {
 			g2d.setColor(Color.decode(PEG_COLOR));
 			Peg currentPeg = itr.next();
-			g2d.fillRect(MARGIN + initialX, MARGIN, PEG_WIDTH, HEIGHT - MARGIN - MARGIN);
+			g2d.fillRect(MARGIN + currentX, MARGIN, PEG_WIDTH, HEIGHT - MARGIN - MARGIN);
 			
 			// Draw Disks
 			Iterator<Disk> itrD = currentPeg.iterator();
-			int intialY = HEIGHT - MARGIN - diskHeight;
+			int currentY = HEIGHT - MARGIN - diskHeight;
 			while(itrD.hasNext()) {
 				Disk currentDisk = itrD.next();
-				g2d.setColor(currentDisk.getColor());
-//				int diskSegment = (distanceBetweenPegs - PADDING) / game.getNumOfDisks();
-//				int diskWidth = diskSegment * currentDisk.getSize();
 				int diskWidth = (distanceBetweenPegs - PADDING) / game.getNumOfDisks() * currentDisk.getSize();
-				g2d.fillRoundRect(MARGIN + initialX + (PEG_WIDTH / 2) - (diskWidth / 2), 
-						intialY, 
+				int startingXofDisk = MARGIN + currentX + (PEG_WIDTH / 2) - (diskWidth / 2);
+				RoundRectangle2D disk = new RoundRectangle2D.Double(startingXofDisk,
+						currentY, 
 						diskWidth, 
 						diskHeight, 
-						3, 
-						3);
-				intialY -= diskHeight;
+						5, 
+						5);
+				
+				Color diskColor = currentDisk.getColor();
+				GradientPaint paint = new GradientPaint(startingXofDisk, currentY, diskColor,
+						startingXofDisk + diskWidth, currentY + diskHeight, Color.WHITE);
+				
+				g2d.setPaint(paint);
+				g2d.fill(disk);
+				g2d.setColor(Color.BLACK);
+				g2d.setStroke(new BasicStroke(STROKE_WIDTH));
+				g2d.draw(disk);
+				
+				//Draw disk size
+				g2d.drawString(Integer.toString(currentDisk.getSize()),
+						MARGIN + currentX,
+						currentY + (diskHeight / 2));
+				currentY -= diskHeight;
 			}
-			initialX += distanceBetweenPegs;
+			currentX += distanceBetweenPegs;
 		}
 	}
 }
