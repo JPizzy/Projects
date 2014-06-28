@@ -1,0 +1,6 @@
+NAME,AD@lvl1,ATKSPD
+Jinx,53,0.625
+Lucian,49,0.638
+Twitch,52,0.679
+Varus,49,0.658
+Vayne,53.25,0.658
