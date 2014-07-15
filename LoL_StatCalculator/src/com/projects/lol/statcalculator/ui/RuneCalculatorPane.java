@@ -16,7 +16,7 @@ import com.projects.lol.statcalculator.LoLCalculator;
 import com.projects.lol.statcalculator.Rune;
 import com.projects.lol.statcalculator.RunePage;
 
-public class RuneCalculatorPanel extends JPanel {
+public class RuneCalculatorPane extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	final static int WIDTH = 150;
@@ -29,7 +29,7 @@ public class RuneCalculatorPanel extends JPanel {
 	private JLabel quints;
 	private JLabel dps;
 
-	public RuneCalculatorPanel(LoLCalculator calculator) {
+	public RuneCalculatorPane(LoLCalculator calculator) {
 		model = calculator;
 		selectedChampionName = new JLabel("Champion");
 		marks = new JLabel();
@@ -102,6 +102,6 @@ public class RuneCalculatorPanel extends JPanel {
 			bonusAtkDmg = runePageStats.get("AD");
 		}
 		double dps = (champ.getBaseAS()) * (bonusAtkSpd + 1) * (champ.getBaseAD() + bonusAtkDmg);
-		return String.format("%.3f", dps);
+		return String.format("%.2f", dps);
 	}
 }

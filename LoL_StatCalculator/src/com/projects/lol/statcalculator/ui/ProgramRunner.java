@@ -18,7 +18,7 @@ public class ProgramRunner {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		frame.add(new ChampionListPane(calculator), BorderLayout.WEST);
-		frame.add(new RuneCalculatorPanel(calculator), BorderLayout.CENTER);
+		frame.add(new RuneCalculatorPane(calculator), BorderLayout.CENTER);
 		
 		frame.pack();
 		frame.setVisible(true);

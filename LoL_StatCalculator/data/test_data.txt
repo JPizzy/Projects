@@ -1,6 +1,14 @@
 NAME,AD@lvl1,ATKSPD
+Corki,51.2,0.625
+Draven,50,0.679
+Ezreal,50.2,0.625
+Graves,54.1,0.625
 Jinx,53,0.625
+Kennen,50.3,0.69
+Kog'Maw,49,0.665
 Lucian,49,0.638
+Miss Fortune,49.5,0.656
 Twitch,52,0.679
 Varus,49,0.658
 Vayne,53.25,0.658
+test,100,0.1
